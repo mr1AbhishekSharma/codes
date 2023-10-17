@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+void mergesort();
+void merge();
+void printarray(int A[],int n){
+    for(int i=0;i<n;i++){
+        printf("%d ",A[i]);
+    }
+    
+}
+
+int main(){
+    int A[]={3,9,5,1,4,8,2};
+    int n=sizeof(A)/sizeof(A[0]);
+    mergesort(A,0,n-1);
+    printarray(A,n);
+}
+
+void mergesort(int A[],int lb,int ub){
+    int mid;
+    if(lb<ub){
+        mid=(lb+ub)/2;
+        mergesort(A,lb,mid);
+        mergesort(A,mid+1,ub);
+        merge(A,lb,mid,ub);
+    }
+}
+void merge(int A[],int B[],int lb,int mid,int ub){
+    
+    int i,j,k;
+    i=lb;
+    j=mid+1;
+    k=lb;
+    while(i<=mid && j<=ub){
+        if(A[i]<=A[j]){
+            B[k++]=A[i++];   
+        }
+        else{
+            B[k++]=A[j++];   
+        }
+    }
+    if(i>mid){
+        while(j<=ub){
+            B[k++]=A[j++];
+        }
+    }
+    else{
+        while(i<=mid){
+            B[k++]=A[i++];
+        }
+    }
+    for(i=lb;i=ub;i++){
+        A[i]=B[i];
+    }
+}
