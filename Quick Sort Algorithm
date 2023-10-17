@@ -1,0 +1,71 @@
+#include <stdio.h>
+void printarray(int A[], int n);
+void Quicksort(int A[], int lb, int ub);
+int partition(int A[], int lb, int ub);
+void swap(int *a, int *b);
+
+int main()
+{
+    int A[] = {10, 15, 1, 2, 9, 16, 11};
+    int n = sizeof(A) / sizeof(A[0]);
+
+    printarray(A, n);
+    Quicksort(A, 0, n - 1);
+    printarray(A, n);
+}
+
+void printarray(int A[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
+
+int partition(int A[], int lb, int ub)
+{
+    int start = lb;
+    int end = ub;
+    int pivot = A[lb];
+    if (lb < ub)
+    {
+        while(start<end)
+        {
+            while (A[start] <= pivot)
+            {
+                start++;
+            }
+            while (A[end] > pivot)
+            {
+                end--;
+              
+            }
+            if (start < end)
+            {
+                swap(&A[start], &A[end]);
+            }
+            else if (start > end)
+            {
+                swap(&A[lb], &A[end]);
+            }
+        }
+    }
+    return end;
+}
+void swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+void Quicksort(int A[], int lb, int ub)
+{
+    if (lb < ub)
+    {
+        int pivotindex = partition(A, lb, ub);
+        Quicksort(A, lb, pivotindex - 1);
+        Quicksort(A, pivotindex + 1, ub);
+    }
+}
