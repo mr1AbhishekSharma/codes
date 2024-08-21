@@ -1,0 +1,15 @@
+class Solution {
+    static long factorial(long n){
+        if(n==1)return 1;
+        return n*factorial(n-1);
+    }
+    static ArrayList<Long> factorialNumbers(long n) {
+       ArrayList<Long> ans=new ArrayList<>();
+       for(int i=1;;i++){
+           long fact=factorial(i);
+           if(fact>n)break;
+           ans.add(fact);
+       }
+       return ans;
+    }
+}
