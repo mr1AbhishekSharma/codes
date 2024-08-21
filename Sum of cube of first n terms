@@ -1,0 +1,13 @@
+class Solution {
+    int sum=0;
+    long cube(long num){
+        return num*num*num;
+    }
+    long sumOfSeries(long n) {
+       if(n==0){
+           return 0;
+       }
+       return cube(n)+sumOfSeries(n-1);
+    }
+    
+}
